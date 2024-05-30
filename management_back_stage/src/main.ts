@@ -13,7 +13,7 @@ const app = createApp(App)
 // axios.defaults.baseURL = 'http://localhost:3000'
 //把axios挂载到全局
 // app.config.globalProperties.axios = axios
-app.use(PrimeVueStyled);
+app.use(PrimeVueStyled as any);  //不写as any 的话会报错  这是类型断言
 
 app.use(router)  //挂载router对象 这个文件里边关于路由就两句话
 

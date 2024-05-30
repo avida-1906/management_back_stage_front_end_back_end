@@ -14,9 +14,13 @@
             class="w-full md:w-14rem"
         />
         <p><button @click="show_box">弹窗</button></p>
-        <p>{{ my_count }}</p>
-        <!-- <p>{{ change_count }}</p> -->
-        <p>{{ xxx() }}</p>
+        <!-- <p>{{ username }}</p>
+        <p>{{ userpassword }}</p>
+        <p>{{ count }}</p>
+        <p>{{ arr }}</p>
+        <p>{{ isOk }}</p> -->
+        <p>{{ store.change_count }}</p>
+        <!-- <button @click="xxx">{{ my_count }}</button> -->
     </div>
 </template>
 
@@ -25,8 +29,10 @@
     import axios from 'axios' //局部引入axios
     import Dropdown from 'primevue/dropdown'; //局部引入该组件，全局引入会报错，而且VUE3里边引入一个组件不需要注册，直接使用即可
     import { message } from '@/components/common/function_box'  //引入一个函数式弹窗
-    import { useUserStore } from '@/pinia';  //引入pinia里边的Store
-    
+    import { useUserStore } from '@/pinia';  //使用pinia里边的某个Store
+    import { storeToRefs } from 'pinia';  //为了从 store 中提取属性时保持其响应性，你需要使用 storeToRefs()。
+
+
     //v-model的值就是个number类型
     const selectedItem = ref();
     //在组件挂载之前去生成模拟数据并且赋值给组件
@@ -59,19 +65,31 @@
     
     //使用store
     const store = useUserStore()
-
+    // store.count++  //最简单的使用方式
+    store.$reset()  //重置store
+    const { username, userpassword, count, arr, isOk } = storeToRefs(store)  //从store里边的state解构出来的ref变量，可在template里边使用
+    const { double_count } = store  //作为actions里边的double_count可以直接解构出来
+    store.$patch({  //$patch可以修改state里边的多个属性---接收一个对象
+        username: '张三',
+        userpassword: '李四',
+        count: 10086
+    })
+    store.$patch((state)=>{  //$patch可以修改state里边的多个属性---接收一个箭头函数
+        state.arr.push( { name: '梅超风' } )
+        state.isOk = true
+    })
     //继续使用store里边的变量
-    const my_count = computed(()=>{
-        return store.count;  //使用store里边的变量时可以跳过state直接store.里边的变量
-    })
+    // const my_count = computed(()=>{
+    //     return store.count;  //使用store里边的变量时可以跳过state直接store.里边的变量
+    // })
     //更改store里边的变量
-    const change_count = computed(()=>{
-        return store.change_count
-    })
+    // const change_count = computed(()=>{
+    //     return store.change_count
+    // })
     //让store里边的count乘以2
-    function xxx() {
-        return store.double_count()
-    }
+    // function xxx() {
+    //     store.double_count()
+    // }
 
 </script>
 
