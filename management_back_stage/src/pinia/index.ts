@@ -36,6 +36,7 @@ export const useUserStore = defineStore( 'user', {  //第一个参数字符串'u
         } 
     },
     actions: {
+        
         double_count() {
             this.count * 2;
         }
