@@ -25,8 +25,8 @@ export function message( title:string, content?:string, confirm_text?:string, ca
     调用弹窗--一个form表单弹窗
     调用的时候要传弹窗标题、提交按钮文本，内容是可选的
 */
-export function form_box( title:string, submit_text:string, content?:string ) {
-    vm_2 = createApp( Form_box, { title, submit_text, content } )
+export function form_box( title:string, submit_text:string ) {
+    vm_2 = createApp( Form_box, { title, submit_text } )
     // vm_2 = app
     vm_2.mount( '#form_box' )
     

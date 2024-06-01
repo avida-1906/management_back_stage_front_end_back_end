@@ -44,7 +44,7 @@
                     // res.send('请求成功');
                     res.json( { message:"登陆成功！！！" } );
                 } 
-            },5000)
+            },2000)
             
             /*res.writeHead(200,{
                 "Access-Control-Allow-Origin":

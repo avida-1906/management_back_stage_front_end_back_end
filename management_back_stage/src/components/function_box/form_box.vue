@@ -23,6 +23,7 @@
 <script setup lang='ts'>
     import { ref, defineProps, reactive, watch, computed } from 'vue'
     import axios from 'axios';
+    import { login_get_api } from '@/api/request.ts'
     import { loading_box, close_box_loading_box, close_box_form_box } from './index'
     import { message } from './index.ts' //确认/取消提示框
     import { username_validate } from '@/utlis/check_username'
@@ -39,6 +40,12 @@
     //控制密码输入框icon切换的变量
     const password_visible = ref<boolean>(false)
 
+    //定义一个对象用来清空form_value对象
+    // const initialFormData = {
+    //     username: '',
+    //     password: ''
+    // };
+
     //对象接口
     interface form_value {
         username: string
@@ -50,6 +57,7 @@
         username: '',
         password: ''
     })
+    // const form_value:form_value = reactive({...initialFormData})
 
     //表单各字段提示内容
     const form_username_tips = ref<string>('')
@@ -57,7 +65,7 @@
     
     //验证表单各字段格式是否满足要求的状态变量
     const is_validate_form_pass = ref<boolean>(false)
-    
+
     /* 
         vue3里边的watch监听对象的话，
         对象必须用reactive（这样watch默认设置了{deep:true}）来定义，
@@ -79,9 +87,9 @@
         传对象的时候就是用到set()和get()，
         传箭头函数就是纯粹就是监听一个值。
     */
-    const x = computed(()=>{
-        return form_value.username ? '有名字' : '没有名字'
-    })
+    // const x = computed(()=>{
+    //     return form_value.username ? '有名字' : '没有名字'
+    // })
     // const x = computed({
     //     get() {
     //         return form_value
@@ -119,22 +127,24 @@
     const submit_form = async () =>{
         
         const url = ref<string>()
-        form_validate( form_value )
+
+        form_validate( form_value )  //校验表单，通过了就给is_validate_form_pass变量赋值为true
+
         if ( !is_validate_form_pass.value ) { //如果表单任意一个字段验证不通过则不关闭弹窗且不调接口
             return false;
         }
         loading_box(  //loading弹窗
             '正在登录......',
             '@/assets/img/loader.gif'
-        )  
+        )
+
         url.value = `http://localhost:8081/?username=${form_value.username}&userpassword=${form_value.password}`
 
-        await axios.get( url.value ).then((value)=>{
-
-            const { statusText, data } = value
-
+        try {
+            const res = await login_get_api( url )
+            const { data, statusText } = res
+            console.log(data)
             if ( data.message === '用户名或密码错误！！！' ) {  //如果登陆失败就不关闭表单弹窗
-
                 message(  //如果登陆失败就弹提示框
                     '提示',
                     '用户名或密码错误',
@@ -145,22 +155,48 @@
 
             } else {  //如果登陆成功就关闭表单弹窗
                 //登陆成功了要把用户名密码存到loaclStorage里边
-                console.log(localStorage)
+                // console.log(localStorage)
                 //localStorage里边的value只能存JSON字符串
                 localStorage.setItem( 'userInfo', JSON.stringify(form_value) )
-                console.log(localStorage.getItem('userInfo'))
+                // console.log(localStorage.getItem('userInfo'))
+                reset_form( form_value )  //清空各个字段
                 confirm_form_box()
-
             }
-
-        }).catch((err)=>{
-            console.log(err)
+        } catch(e) {
+            console.log(e, 'catch(e)')
             confirm_loading_box()  //无论如何loading弹窗最终会关闭
-        }).finally(()=>{
-            confirm_loading_box()  //无论如何loading弹窗最终会关闭
-        })
-        
+        } finally {
+            confirm_loading_box() //无论如何loading弹窗最终会关闭
+        }
     }
+
+    /* 
+        定义一个方法，用于登陆成功之后清除表单各个字段的数据
+        这里我要总结一下，今天我优化代码的时候谷歌浏览器弹窗问我是否保存账号密码，
+        我手快点击了保存，结果每次弹出表单这个窗口的时候都会自动填充账号密码，
+        这就导致我无论如何清空表单的数据都没有效果，尝试了各种办法都没法清空form_value这个对象里各个字段的数据。
+        我还以为是我代码出问题了，排查了很久，后来我手动把浏览器保存的账号密码删掉之后就好了。
+    */
+    const reset_form = ( y:form_value ) =>{
+        y.username = '';
+        y.password = '';
+        // const keys = Object.keys(y) as Array<keyof typeof y>;
+        // keys.forEach((key) => {
+        //     y[key] = initialFormData[key]
+        //     console.log(key);
+        // });
+
+        // const obj = {
+        //     username: '',
+        //     password: ''
+        // }
+        // const x = Object.assign(y, obj)
+        // y.username = '';
+        // y.password = '';
+        // console.log( y )
+        // return y
+    }
+
 </script>
     
 <style scoped lang='css'>
