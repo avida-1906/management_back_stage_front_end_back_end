@@ -15,11 +15,13 @@
         />
         <p><button @click="show_box">弹窗</button></p>
         <!-- <p>{{ username }}</p>
-        <p>{{ userpassword }}</p>
-        <p>{{ count }}</p>
-        <p>{{ arr }}</p>
+        <p>{{ userpassword }}</p> -->
+        <p>{{ store.count }}</p>
+        <!-- <p>{{ arr }}</p>
         <p>{{ isOk }}</p> -->
-        <p>{{ store.change_count }}</p>
+        <!-- <p>{{ store.change_count }}</p>
+        <p>{{ store.change_count_plus_one }}</p>
+        <p>{{ store.get_count(6) }}</p> -->
         <!-- <button @click="xxx">{{ my_count }}</button> -->
     </div>
 </template>
@@ -66,18 +68,21 @@
     //使用store
     const store = useUserStore()
     // store.count++  //最简单的使用方式
-    store.$reset()  //重置store
-    const { username, userpassword, count, arr, isOk } = storeToRefs(store)  //从store里边的state解构出来的ref变量，可在template里边使用
+    // store.$reset()  //重置store
+    // const { username, userpassword, count, arr, isOk } = storeToRefs(store)  //从store里边的state解构出来的ref变量，可在template里边使用
     const { double_count } = store  //作为actions里边的double_count可以直接解构出来
-    store.$patch({  //$patch可以修改state里边的多个属性---接收一个对象
-        username: '张三',
-        userpassword: '李四',
-        count: 10086
-    })
-    store.$patch((state)=>{  //$patch可以修改state里边的多个属性---接收一个箭头函数
-        state.arr.push( { name: '梅超风' } )
-        state.isOk = true
-    })
+    double_count()
+    // store.$patch({  //$patch可以修改state里边的多个属性---接收一个对象
+    //     username: '张三',
+    //     userpassword: '李四',
+    //     count: 10086
+    // })
+    // store.$patch((state)=>{  //$patch可以修改state里边的引用类型属性---接收一个箭头函数
+    //     state.arr.push( { name: '梅超风' } )
+    //     state.isOk = true
+    // })
+    
+
     //继续使用store里边的变量
     // const my_count = computed(()=>{
     //     return store.count;  //使用store里边的变量时可以跳过state直接store.里边的变量
