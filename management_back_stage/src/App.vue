@@ -1,14 +1,13 @@
 <template>
-  <router-view></router-view>
-  <!-- 这个是挂载表单弹窗的容器 -->
-  <div ref="form_box" id="form_box"></div>
+    <router-view></router-view>
+    <!-- 这个是挂载表单弹窗的容器 -->
+    <div ref="form_box" id="form_box"></div>
 
-  <!-- 这个是挂载Loading弹窗的容器 -->
-  <div ref="loading_box" id="loading_box"></div>
+    <!-- 这个是挂载Loading弹窗的容器 -->
+    <div ref="loading_box" id="loading_box"></div>
 
-  <!-- 这个是挂载确认/取消弹窗的容器 -->
-  <div ref="message" id="message"></div>
-
+    <!-- 这个是挂载确认/取消弹窗的容器 -->
+    <div ref="message" id="message"></div>
 </template>
 
 <script setup lang="ts">

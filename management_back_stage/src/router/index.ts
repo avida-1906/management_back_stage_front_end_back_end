@@ -5,7 +5,7 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         path: '/login',
         name: 'login',
         meta: { requiresAuth: true },
-        component: ()=>import('@/components/login/index.vue'),
+        component: ()=>import('@/components/login/index.vue'),  //这是按需加载
     },
     {//这是个首页组件的路由
         path: '/',
@@ -43,6 +43,12 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=>import('@/components/function_box/index.vue'),
     },
+    {//研究axios拦截器设置token---商品列表页
+        path: '/product_list',
+        name: 'product_list',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/product_list/index.vue'),
+    },
 ]
 
 const router = createRouter({
@@ -58,14 +64,18 @@ const router = createRouter({
   return false 是取消跳转
 */
 router.beforeEach( async ( to, from )=>{
-    // const authenticated = localStorage.getItem('userInfo')
-    // if ( to.name !== 'login' && !authenticated  ) {
-    //     return { name: 'login' }
-    // }
-    return true;
+    const authenticated = localStorage.getItem('userInfo')
+    //如果不是去登录页，而且又不是已经登录的，则跳转到登录页
+    if ( to.name !== 'login' && !authenticated  ) {
+        return { name: 'login' }
+    }
+    //如果要去登录页，而且又已经登录了，则不跳转
+    if ( to.name === 'login' && authenticated ) {
+        return false;  //return false 就是不跳转的意思
+    }
+    
+    return true;  //这个return false一定要写啊！
 } )
-
-
 
 //向外暴露router对象
 export default router

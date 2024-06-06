@@ -22,9 +22,12 @@
     
 <script setup lang='ts'>
     import { ref, reactive, watch } from 'vue'
+    import { useRouter } from 'vue-router'
     import axios from 'axios';
     import { close_box_message } from './index'
     
+
+    const router = useRouter()
     const { confirm_box_message } = close_box_message()
 
     const props = defineProps({
@@ -58,8 +61,8 @@
     watch(
         form_value,
         (x)=>{
-            console.log(x)
-            console.log('监听成功')
+            // console.log(x)
+            // console.log('监听成功')
             form_validate(x)
         },
         { deep: true }, 
@@ -74,7 +77,8 @@
         if ( x.password ) {
             password_validate( x.password )
         } else {
-            console.log('密码为空')
+            password_tips.value = ''  //当输入框为空的时候不能出现提示文本
+            // console.log('密码为空')
         }
     }
 
@@ -170,12 +174,12 @@
     //提交表单，调接口
     const submit_form = () =>{
         form_validate( form_value )
-        axios.post('http://localhost:3000/users', { id:2, name: '李四', age: 11 }).then((value)=>{
-            const { statusText, data } = value
-            console.log(data, statusText)
-        }).finally(()=>{
-            confirm_box_message()
-        })
+        // axios.post('http://localhost:3000/users', { id:2, name: '李四', age: 11 }).then((value)=>{
+        //     const { statusText, data } = value
+        //     console.log(data, statusText)
+        // }).finally(()=>{
+        //     confirm_box_message()
+        // })
         
     }
 </script>

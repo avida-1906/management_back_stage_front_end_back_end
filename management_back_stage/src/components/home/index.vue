@@ -1,5 +1,6 @@
 <template>
     <div>
+        <my_headerheader></my_headerheader>
         <p>这是首页</p>
         <button @click="get_menus()">获取菜单</button>
         <p>这是一个下拉列表-后端返回十万条数据不卡顿</p>
@@ -27,12 +28,13 @@
 </template>
 
 <script setup type="ts">
-    import { onBeforeMount, onMounted, ref, reactive, nextTick, computed } from 'vue'
+    import { onBeforeMount, onMounted, ref, reactive, nextTick, computed, defineComponent } from 'vue'
     import axios from 'axios' //局部引入axios
     import Dropdown from 'primevue/dropdown'; //局部引入该组件，全局引入会报错，而且VUE3里边引入一个组件不需要注册，直接使用即可
     import { message } from '@/components/common/function_box'  //引入一个函数式弹窗
-    import { useUserStore } from '@/pinia';  //使用pinia里边的某个Store
+    import { useUserStore } from '@/stores/users';  //使用pinia里边的某个Store
     import { storeToRefs } from 'pinia';  //为了从 store 中提取属性时保持其响应性，你需要使用 storeToRefs()。
+    import my_headerheader from '@/components/common/header/index.vue'
 
 
     //v-model的值就是个number类型

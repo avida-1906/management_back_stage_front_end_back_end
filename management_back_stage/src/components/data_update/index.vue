@@ -12,7 +12,7 @@
     const addProperty = ()=>{
         // item.newProperty = '新属性'
         Reflect.set(item,'newProperty','新属性')
-        console.log(item)
+        // console.log(item)
     }
     // onMounted(()=>{
     //     addProperty()

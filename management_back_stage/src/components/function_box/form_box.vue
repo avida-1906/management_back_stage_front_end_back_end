@@ -22,15 +22,26 @@
     
 <script setup lang='ts'>
     import { ref, defineProps, reactive, watch, computed } from 'vue'
-    import axios from 'axios';
-    import { login_get_api } from '@/api/request.ts'
     import { loading_box, close_box_loading_box, close_box_form_box } from './index'
     import { message } from './index.ts' //确认/取消提示框
     import { username_validate } from '@/utlis/check_username'
     import { password_validate } from '@/utlis/check_password'
-
+    import { useUserStore } from '@/stores/users.ts'
+    import { useRouter } from 'vue-router'
+    
+    /* 
+        [Vue warn]: injection "Symbol(router)" not found.
+        出现这个警告那是因为 app.use(router)写在app.mount(#app)之后了。
+        要解决这个问题就要在该组件相关的TS文件里边的vm_2.mount( '#form_box' )前面加上vm_2.use(router)，
+        别忘了import router from '@/router'引入router文件夹里边的index.ts文件。
+    */
+    const router = useRouter()
     const { confirm_form_box } = close_box_form_box()  //关闭表单弹窗
     const { confirm_loading_box } = close_box_loading_box()  //关闭loading弹窗
+
+
+    const store = useUserStore()
+    const { store_login } = store
 
     const props = defineProps({
         title: { type: String, required: true },
@@ -138,12 +149,11 @@
             '@/assets/img/loader.gif'
         )
 
-        url.value = `http://localhost:8081/?username=${form_value.username}&userpassword=${form_value.password}`
+        url.value = `/login?username=${form_value.username}&userpassword=${form_value.password}`
 
         try {
-            const res = await login_get_api( url )
-            const { data, statusText } = res
-            console.log(data)
+            const { data, statusText } = await store_login( url )
+            // console.log(data)
             if ( data.message === '用户名或密码错误！！！' ) {  //如果登陆失败就不关闭表单弹窗
                 message(  //如果登陆失败就弹提示框
                     '提示',
@@ -154,16 +164,12 @@
                 return false;
 
             } else {  //如果登陆成功就关闭表单弹窗
-                //登陆成功了要把用户名密码存到loaclStorage里边
-                // console.log(localStorage)
-                //localStorage里边的value只能存JSON字符串
-                localStorage.setItem( 'userInfo', JSON.stringify(form_value) )
-                // console.log(localStorage.getItem('userInfo'))
-                reset_form( form_value )  //清空各个字段
-                confirm_form_box()
+                // console.log(store.token)
+                reset_form( form_value )  //登录成功的话清空各个字段
+                router.push({name:'home'})  //登录成功的话跳转到首页
+                confirm_form_box()  //登录成功的话关闭表单弹窗
             }
         } catch(e) {
-            console.log(e, 'catch(e)')
             confirm_loading_box()  //无论如何loading弹窗最终会关闭
         } finally {
             confirm_loading_box() //无论如何loading弹窗最终会关闭

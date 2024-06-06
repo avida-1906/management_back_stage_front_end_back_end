@@ -10,14 +10,14 @@
 <script setup lang='ts'>
     import { form_box } from '@/components/function_box/'
     
-        //打开表单弹窗
+    //打开表单弹窗
     const show_form = ()=>{
         form_box( 
             '弹窗标题',
             '提交'
         )
     }
-    
+
 </script>
     
 <style scoped lang='css'>

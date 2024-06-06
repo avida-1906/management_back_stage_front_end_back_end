@@ -1,7 +1,8 @@
-import { createApp } from 'vue'
+import { createApp, defineAsyncComponent } from 'vue'
 import Message from './message.vue'
 import Form_box from './form_box.vue'
 import Loading_box from './loading_box.vue'
+import router from '@/router'  //引入向外暴露的router对象
 
  /* 
     之所以要声明这些全局变量是为了方便关闭对应的弹窗
@@ -17,7 +18,6 @@ let vm_3:any
 */
 export function message( title:string, content?:string, confirm_text?:string, cancel_text?:string ) {
     vm_1 = createApp( Message, { title, content, confirm_text, cancel_text } )
-    // vm_1 = app
     vm_1.mount( '#message' )
 }
 
@@ -27,7 +27,11 @@ export function message( title:string, content?:string, confirm_text?:string, ca
 */
 export function form_box( title:string, submit_text:string ) {
     vm_2 = createApp( Form_box, { title, submit_text } )
-    // vm_2 = app
+    /* 
+        这里还要挂载一下路由，否则会报错：
+        [Vue warn]: injection "Symbol(router)" not found.
+    */
+    vm_2.use(router)
     vm_2.mount( '#form_box' )
     
 }
@@ -38,7 +42,6 @@ export function form_box( title:string, submit_text:string ) {
 */
 export function loading_box( title:string, html_content?:string ) {
     vm_3 = createApp( Loading_box, { title, html_content } )
-    // vm_3 = app
     vm_3.mount( '#loading_box' )
     
 }
