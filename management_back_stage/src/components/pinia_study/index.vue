@@ -1,17 +1,22 @@
 <template>
     <div>
-        <h1>pinia学习</h1>
+        <!-- <h1>pinia学习</h1>
         <p>{{ username }}</p>
         <p>store里边的ref---count:{{ count }}</p>
         <p>store里边的computed---change_count:{{ change_count }}</p>
         <button @click="add_one">改变count---store里边的function---add_one</button>
         <br>
         <button @click="$reset">重置state里边的某个变量---store里边的function---$reset</button>
+        <br> -->
+        <children_A/>
+        <children_B/>
     </div>
 </template>
     
 <script setup lang='ts'>
     import { ref } from 'vue'
+    import children_A from '@/components/pinia_study/children_a.vue'
+    import children_B from '@/components/pinia_study/children_b.vue'
 
     /* 
         从Pinia里边解构出storeToRefs这个工具

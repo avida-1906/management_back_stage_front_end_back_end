@@ -30,7 +30,7 @@ import { ref, computed } from 'vue'
 */
 
 //这是第一个store
-// export const useUserStore = defineStore( 'user_id', {  //第一个参数字符串'user'是ID，在Store应用中唯一
+// export const useUserStore = defineStore( 'user_id', {  //第一个参数字符串'user'是ID，在Store应用中唯一；第二个参数是个对象
 //     state: ():user => {  //这是一个箭头函数，return出来我们需要的变量
 //         return {
 //             username: '123',
@@ -100,7 +100,7 @@ import { ref, computed } from 'vue'
 /* 
     这是组合式（Setup Store）写法，
 */
-export const useUserStore = defineStore( 'user_id', ()=>{
+export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传一个箭头函数
     //这些是ref（state）
     const username = ref('王五')
     const userpassword = ref('456')
