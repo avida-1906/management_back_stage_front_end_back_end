@@ -72,8 +72,8 @@
     // store.count++  //最简单的使用方式
     // store.$reset()  //重置store
     // const { username, userpassword, count, arr, isOk } = storeToRefs(store)  //从store里边的state解构出来的ref变量，可在template里边使用
-    const { double_count } = store  //作为actions里边的double_count可以直接解构出来
-    double_count()
+    const { add_one } = store  //作为actions里边的double_count可以直接解构出来
+    add_one()
     // store.$patch({  //$patch可以修改state里边的多个属性---接收一个对象
     //     username: '张三',
     //     userpassword: '李四',
@@ -95,7 +95,7 @@
     // })
     //让store里边的count乘以2
     // function xxx() {
-    //     store.double_count()
+    //     store.add_one()
     // }
 
 </script>

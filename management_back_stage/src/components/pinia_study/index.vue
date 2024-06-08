@@ -4,7 +4,7 @@
         <p>{{ username }}</p>
         <p>store里边的ref---count:{{ count }}</p>
         <p>store里边的computed---change_count:{{ change_count }}</p>
-        <button @click="change_name">改变username---store里边的function---change_name</button>
+        <button @click="add_one">改变count---store里边的function---add_one</button>
         <br>
         <button @click="$reset">重置state里边的某个变量---store里边的function---$reset</button>
     </div>
@@ -34,7 +34,7 @@
         把store里边actions（function）定义的函数解构出来
     */
     const { 
-        double_count,
+        add_one,
         store_login,
         change_name,
         $reset

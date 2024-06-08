@@ -72,7 +72,7 @@ import { ref, computed } from 'vue'
 //         每个函数都可以有异步操作。
 //     */
 //     actions: {  //这是一个对象
-//         double_count() {
+//         add_one() {
 //             // console.log('调用了')
 //             this.count++;
 //         },
@@ -131,8 +131,7 @@ export const useUserStore = defineStore( 'user_id', ()=>{
     // } )
 
     //这些是function（actions）
-    function double_count() {
-        // console.log('调用了')
+    function add_one() {
         count.value++;
     }
     async function store_login( url:object ) {
@@ -171,7 +170,7 @@ export const useUserStore = defineStore( 'user_id', ()=>{
         change_count_plus_one, 
         get_count, 
         change_login_status,
-        double_count,
+        add_one,
         store_login,
         change_name,
         $reset
