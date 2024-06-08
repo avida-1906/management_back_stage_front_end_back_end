@@ -14,15 +14,15 @@ import { defineStore } from "pinia";
 import { api_login_get } from '@/api/request'
 import { ref, computed } from 'vue'
 
-interface user {
-    username:string
-    userpassword:string
-    count:number
-    arr:number[]
-    isOk:boolean
-    is_login:boolean | null
-    token: string
-}
+// interface user {
+//     username:string
+//     userpassword:string
+//     count:number
+//     arr:number[]
+//     isOk:boolean
+//     is_login:boolean | null
+//     token: string
+// }
 
 /* 
     这是选项式（Optino Store）写法，state相当于vue2里边的data，getters相当于vue2里边的computed，actions相当于vue2里边的methods。
@@ -101,14 +101,16 @@ interface user {
     这是组合式（Setup Store）写法，
 */
 export const useUserStore = defineStore( 'user_id', ()=>{
-    const username = ref('123')
+    //这些是ref（state）
+    const username = ref('王五')
     const userpassword = ref('456')
-    const count = ref(0)
+    const count = ref(1)
     const arr = ref([1,2,3,4,5])
     const isOk = ref(false)
     const is_login = ref<boolean>()
-    const token = ref('')
+    const _token = ref<string>()
 
+    //这些是computed（getters）
     const change_count = computed(()=>{
         return count.value * 2;
     })
@@ -124,7 +126,54 @@ export const useUserStore = defineStore( 'user_id', ()=>{
     const change_login_status = computed( ()=>{
         return is_login.value = true;
     } )
+    // const change_name = computed( ()=>{
+    //     username.value = '张三'
+    // } )
 
+    //这些是function（actions）
+    function double_count() {
+        // console.log('调用了')
+        count.value++;
+    }
+    async function store_login( url:object ) {
+        type AxiosResponse = any  //这句话我是在编辑器提示里边抄的，以后遇到这种报错就可以在提示里边抄，实在不行就any
+        let res:AxiosResponse;
+        res = await api_login_get( url )
+        const { data } = res;
+        // console.log(data)
+        const { token } = data;
+        //登陆成功了要把用户名密码存到loaclStorage里边
+        //localStorage里边的value只能存JSON字符串
+        localStorage.setItem( 'userInfo', JSON.stringify(data) )
+        // console.log(localStorage.getItem('userInfo'))
+        _token.value = token;  //两个变量名不能一样
+        return res
+    }
+    function change_name() {
+        
+        username.value = '张三'
+    }
+    //创建一个重置state的函数$reset()
+    function $reset() {
+        console.log('我被调用了')
+        count.value = 1;
+    }
 
-    return { username, userpassword, arr, isOk, token, change_count, change_count_plus_one, get_count, change_login_status }
+    return {
+        //不管是state/getters变量还是actions里边的函数都要在这里return出来
+        count,
+        username, 
+        userpassword, 
+        arr, 
+        isOk, 
+        _token, 
+        change_count, 
+        change_count_plus_one, 
+        get_count, 
+        change_login_status,
+        double_count,
+        store_login,
+        change_name,
+        $reset
+    }
 } )

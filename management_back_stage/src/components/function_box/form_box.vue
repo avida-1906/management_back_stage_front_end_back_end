@@ -21,7 +21,7 @@
 </template>
     
 <script setup lang='ts'>
-    import { ref, defineProps, reactive, watch, computed } from 'vue'
+    import { ref, defineProps, reactive, watch } from 'vue'
     import { loading_box, close_box_loading_box, close_box_form_box } from './index'
     import { message } from './index.ts' //确认/取消提示框
     import { username_validate } from '@/utlis/check_username'
@@ -136,7 +136,6 @@
 
     //提交表单，调接口
     const submit_form = async () =>{
-        
         const url = ref<string>()
 
         form_validate( form_value )  //校验表单，通过了就给is_validate_form_pass变量赋值为true
@@ -152,8 +151,8 @@
         url.value = `/login?username=${form_value.username}&userpassword=${form_value.password}`
 
         try {
-            const { data, statusText } = await store_login( url )
-            // console.log(data)
+            console.log('disidfisdfsd')
+            const { data, status } = await store_login( url )
             if ( data.message === '用户名或密码错误！！！' ) {  //如果登陆失败就不关闭表单弹窗
                 message(  //如果登陆失败就弹提示框
                     '提示',
@@ -170,6 +169,7 @@
                 confirm_form_box()  //登录成功的话关闭表单弹窗
             }
         } catch(e) {
+            console.log(e)
             confirm_loading_box()  //无论如何loading弹窗最终会关闭
         } finally {
             confirm_loading_box() //无论如何loading弹窗最终会关闭

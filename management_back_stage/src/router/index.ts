@@ -49,6 +49,12 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=>import('@/components/product_list/index.vue'),
     },
+    {//研究pinia
+        path: '/pinia_study',
+        name: 'pinia_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/pinia_study/index.vue'),
+    },
 ]
 
 const router = createRouter({
