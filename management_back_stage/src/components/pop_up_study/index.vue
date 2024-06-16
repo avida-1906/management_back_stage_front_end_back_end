@@ -9,6 +9,6 @@
     import { pop_up } from './index'
 
     const tanchuang = () => {
-        pop_up('弹窗标题','弹窗内容区域')
+        pop_up('弹窗标题','弹窗内容区域',2000)
     }
 </script>

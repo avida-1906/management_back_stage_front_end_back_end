@@ -5,15 +5,13 @@
         <p>测试一下登录成功之后能不能让请求拦截器设置token</p>
         <div class="product_list_parent">
             <ul class="product_list">
-                <template >
-                    <!-- 
-                        这个arr定义的时候有讲究，一定要用vue3+TS的方式去定义它，
-                        let arr = ref<product_item []>([])
-                        并且要定义一个接口来product_item描述这个数组里边的对象，
-                        这样，这里的v-for就不会出现 类型“XXX”上不存在属性“product_name”。
-                    -->
-                    <li v-for="item in arr" :key="item.id">{{ item.product_name }}</li>
-                </template>
+                <!-- 
+                    这个arr定义的时候有讲究，一定要用vue3+TS的方式去定义它，
+                    let arr = ref<product_item []>([])
+                    并且要定义一个接口来product_item描述这个数组里边的对象，
+                    这样，这里的v-for就不会出现 类型“XXX”上不存在属性“product_name”。
+                -->
+                <li v-for="item in arr" :key="item.id">{{ item.product_name }}</li>
             </ul>
             
         </div>

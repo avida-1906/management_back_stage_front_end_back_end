@@ -13,7 +13,7 @@
 </template>
     
 <script setup lang='ts'>
-    import { ref, defineProps, onMounted } from 'vue'
+    import { ref, onMounted } from 'vue'
     import { close_box_message } from '../function_box'
     
     const { cancle_box_message, confirm_box_message } = close_box_message()

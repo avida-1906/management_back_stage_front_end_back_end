@@ -1,22 +1,20 @@
 import { createApp } from 'vue'
 import Pop_up from './pop_up.vue'
 
-export function pop_up<T>( title:T, content:T, time?:number, status?:string ):void{  //参数time最好不要给默认值，否则没法设置可选
-    if ( pop_up.__timer ) {
-        clearTimeout(pop_up.__timer)
-    }
-
+export function pop_up<T>( title: string, content: string, time?: number, status?: string ): void {  //参数time最好不要给默认值，否则没法设置可选
+    let __timer: number;
+    
     const app = createApp(Pop_up, { title, content })
 
     // app.mount(document.body)
     app.mount('#message')
 
-    let __timer: number;
-    __timer = window.setTimeout(() => {
+    __timer = window.setTimeout(() => {  //定时器有时候要在window对象点出来，否则容易报错：不能将类型“Timeout”分配给类型“number”。
         app.unmount()
+        console.log('这里有执行么')
     }, time);
-    Object.assign( pop_up, { __timer } )
-    pop_up.__timer
+    
+    if ( __timer==0 ) {
+        clearTimeout(__timer)
+    }
 }
-
-pop_up.__timer = 0

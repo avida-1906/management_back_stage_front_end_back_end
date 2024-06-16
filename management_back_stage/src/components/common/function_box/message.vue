@@ -10,7 +10,7 @@
 </template>
     
 <script setup lang='ts'>
-    import { defineProps } from 'vue'
+    // import { defineProps } from 'vue'
     import { close_box_message } from '../function_box'
 
     const { cancle_box_message, confirm_box_message } = close_box_message()

@@ -21,7 +21,7 @@
 </template>
     
 <script setup lang='ts'>
-    import { ref, defineProps, reactive, watch } from 'vue'
+    import { ref, reactive, watch } from 'vue'
     import { loading_box, close_box_loading_box, close_box_form_box } from './index'
     import { message } from './index.ts' //确认/取消提示框
     import { username_validate } from '@/utlis/check_username'

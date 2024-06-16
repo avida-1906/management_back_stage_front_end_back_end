@@ -10,7 +10,7 @@
 </template>
     
 <script setup lang='ts'>
-    import { ref, defineProps, onMounted } from 'vue'
+    import { ref, onMounted } from 'vue'
     /* 
         在哪个组件使用img就要在哪个组件里边import图片，否则会出现src正常但就是图片的宽高为0
         想要把图片通过v-html的方式注入也是不行的，特别是src要从父组件那边传过来的情况

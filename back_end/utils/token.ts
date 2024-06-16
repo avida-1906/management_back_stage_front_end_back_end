@@ -7,7 +7,7 @@ const setToken = (user_name, user_id) => {
     return new Promise( (resolve, reject)=>{
         //expiresln 设置token过期的时间
         //{ user_name: user_name, user_id: user_id } 传入需要解析的值（ 一般为用户名，用户id 等）
-        const token = jwt.sign( { user_name, user_id }, jwt_token_sign, { expiresIn: 30 } )
+        const token = jwt.sign( { user_name, user_id }, jwt_token_sign, { expiresIn: 120 } )
         resolve(`Bearer ${token}`)
     } )
 }
