@@ -1,0 +1,35 @@
+    /* 
+        这个文件好像不太需要用到，直接把样式写在组件里边
+    */
+    
+    
+    
+    /* 
+        定义变量和值
+    */
+    $bgcolor: red;
+
+    /* 
+        使用变量
+    */
+    #parent {
+            h1 {
+                $bgcolor: green;  //这里相当于给变量重新赋值了，那么这个变量的作用域仅限于这个h1标签
+                background: $bgcolor;
+                @include common-style;  //记住了，  sass里边的混入就是这样引入的。
+            }
+            h2 {
+                $bgcolor: blue !global;  //写了!global之后表示从这一行开始后面所有$bgcolor的值都为blue
+                background: $bgcolor;
+            }
+            .d1 {
+                width: 100px;
+                height: 100px;
+                background: $bgcolor;
+            }
+        .d1 {
+            width: 100px;
+            height: 100px;
+            background: $bgcolor;
+        }
+    }

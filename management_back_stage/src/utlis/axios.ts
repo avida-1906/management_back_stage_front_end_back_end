@@ -102,4 +102,4 @@ const responseInterceptor = request.interceptors.response.use(
 // 移除响应拦截器
 // request.interceptors.response.eject(responseInterceptor);
 
-export default request;
+export default { requestInterceptor, responseInterceptor, request };

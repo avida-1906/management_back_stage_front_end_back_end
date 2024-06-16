@@ -55,6 +55,12 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=>import('@/components/pinia_study/index.vue'),
     },
+    {//研究sass
+        path: '/sass_study',
+        name: 'sass_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/sass_study/index.vue'),
+    },
 ]
 
 const router = createRouter({

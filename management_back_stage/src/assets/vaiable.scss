@@ -1,0 +1,32 @@
+//定义一个混入  这个文件就是集中定义混入的地方
+/* 
+    关于sass的混入定义还要在vite.config.ts里边写下这样一堆：
+    css: {
+        preprocessorOptions: {
+        scss: {
+            // charest:false,
+            additionalData: `@import './src/assets/vaiable.scss';`
+        }
+        },
+    }
+*/
+
+@mixin common-style {  //记住了， sass里边的混入是这样定义的
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    border: 1px solid blue;
+    background: gray;
+}
+
+@mixin second-style($pixel1) {  //记住了， sass里边的混入是这样定义的，这里是定义成函数的形式
+    width: $pixel1;
+    height: $pixel1;
+    background: red;
+}
+
+//Sass @extend 与 继承
+.basic-style {  //这里定义了一套样式，将来可以在其他地方被继承（@extend）
+    background: black;
+    color: white;
+}

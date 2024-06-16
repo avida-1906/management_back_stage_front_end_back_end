@@ -1,0 +1,8 @@
+.d2 {
+    @include second-style(100px);  //这里相当于调用函数并且传参
+}
+
+.btn {
+    @extend .basic-style;  //这里继承了一套类名为.basic-style的样式
+    border: solid 10px red;
+}

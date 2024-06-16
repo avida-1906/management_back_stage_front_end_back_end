@@ -151,7 +151,7 @@
         url.value = `/login?username=${form_value.username}&userpassword=${form_value.password}`
 
         try {
-            console.log('disidfisdfsd')
+            // console.log('disidfisdfsd')
             const { data, status } = await store_login( url )
             if ( data.message === '用户名或密码错误！！！' ) {  //如果登陆失败就不关闭表单弹窗
                 message(  //如果登陆失败就弹提示框
