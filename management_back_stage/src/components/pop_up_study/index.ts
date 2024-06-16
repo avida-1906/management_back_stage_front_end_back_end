@@ -11,10 +11,9 @@ export function pop_up<T>( title: string, content: string, time?: number, status
 
     __timer = window.setTimeout(() => {  //定时器有时候要在window对象点出来，否则容易报错：不能将类型“Timeout”分配给类型“number”。
         app.unmount()
-        console.log('这里有执行么')
     }, time);
     
-    if ( __timer==0 ) {
+    if ( __timer==0 ) {  //清除定时器，防止内存泄露
         clearTimeout(__timer)
     }
 }

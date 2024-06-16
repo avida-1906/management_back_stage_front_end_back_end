@@ -27,7 +27,7 @@
 
     const store = useProductStore()
     const { store_get_product_list } = store  //actions里边的方法可以直接解构
-    const { arr } = storeToRefs(store)
+    const { arr } = storeToRefs(store)  //把useProductStore里边的arr解构出来
 
     const url = ref<string>('')
     async function api_get_product_list() {
