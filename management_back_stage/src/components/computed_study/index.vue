@@ -8,7 +8,14 @@
 
 <script setup lang="ts">
     import { reactive } from 'vue'
-    const obj = reactive({
+    
+    //记住，一定要给对象定义接口，否则打包的时候容易报错：
+    //Property 'age' does not exist on type '{ name: string; }'.
+    interface person{
+        name: string
+        age?: number
+    }
+    const obj: person = reactive({
         name: '张三',
     })
   

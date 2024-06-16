@@ -18,8 +18,8 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,  //如果代码里边出现 已声明“ ”，但从未读取其值。这种提示，那就把这个属性改成false
+    "noUnusedParameters": false,  //同上，检查未使用的函数参数
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
