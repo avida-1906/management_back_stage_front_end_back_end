@@ -6,14 +6,16 @@
 </template>
     
 <script setup lang='ts'>
-   import { ref } from 'vue'
-    
+    import { ref, onUnmounted } from 'vue'
+    onUnmounted( ()=>{
+        console.log('组件detail卸载了')
+    } )
 </script>
     
 <style scoped lang='css'>
     .detail {
         width: 50%;
-        height: 500px;
+        height: 300px;
         background: red;
     }
 </style>

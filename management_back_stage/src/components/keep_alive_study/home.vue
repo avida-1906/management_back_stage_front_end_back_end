@@ -6,14 +6,16 @@
 </template>
     
 <script setup lang='ts'>
-   import { ref } from 'vue'
-    
+    import { onUnmounted, ref } from 'vue'
+    onUnmounted( ()=>{
+        console.log('组件home卸载了')
+    } )
 </script>
     
 <style scoped lang='css'>
     .home {
         width: 50%;
-        height: 500px;
+        height: 300px;
         background: blue;
     }
 </style>

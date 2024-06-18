@@ -103,6 +103,18 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=>import('@/components/transition_study/index.vue'),
     },
+    {//研究@keyFrams原生CSS样式
+        path: '/keyFrams_study',
+        name: 'keyFrams_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/keyFrams_study/index.vue'),
+    },
+    {//研究Attributes透传
+        path: '/attributes_study',
+        name: 'attributes_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/Attributes_study/index.vue'),
+    },
 ]
 
 const router = createRouter({
