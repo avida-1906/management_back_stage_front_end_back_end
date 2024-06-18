@@ -5,7 +5,10 @@
         <!-- <Transition name="fade" mode="default">
             <p v-if="is_show">你好世界</p>
         </Transition> -->
-        <p class="fadein" :class="transition_effect" v-if="is_show">你好世界</p>
+        <div class="fadein container" :class="transition_effect" v-if="is_show">
+            <p>你好世界</p>
+        </div>
+        
     </div>
 </template>
     
@@ -23,46 +26,12 @@
 </script>
     
 <style scoped lang='css'>
-    /* .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 1s ease;
+    
+    .container {
+        width: 100px;
+        height: 100px;
+        background: red;
     }
-
-    .fade-enter-from,
-    .fade-leave-to {
-        opacity: 0;
-    } */
-    /* p {
-        background: red;
-        width: 20%;
-        opacity: 1;
-        
-            第一个参数是指定要改变的样式，
-            第二个参数是持续时间，
-            第三个参数是指定过渡效果的速度曲线，
-            第四个参数是开始前的延时时间。
-       
-        transition: width 0.5s linear 0s;
-        transition: opacity 0.5s linear 0s;
-    } */
-    
-    
-    /* .transition_effect {
-        visibility: hidden;
-        background: red;
-        width: 20%;
-        opacity: 0;  透明
-        transition: opacity 0.5s linear 0s;
-    } */
-    /* 冒号前后都不能有空格，否则没有效果 */
-    /* p:hover {
-        width: 30%;
-        opacity: 1;
-    } */
-    /* .transition_effect:active {
-        opacity: 1;  不透明
-        visibility:visible;
-    } */
     .fadein {
         /*
             animation中文意思是动画片，

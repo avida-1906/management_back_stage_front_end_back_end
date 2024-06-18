@@ -115,6 +115,18 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=>import('@/components/Attributes_study/index.vue'),
     },
+    {//依赖注入学习
+        path: '/provide_inject_study',
+        name: 'provide_inject_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/provide_inject_study/index.vue'),
+    },
+    {//异步组件学习：按需导入（或者说动态导入）
+        path: '/async_components',
+        name: 'async_components',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/async_components/index.vue'),
+    },
 ]
 
 const router = createRouter({

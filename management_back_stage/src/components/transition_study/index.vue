@@ -27,7 +27,7 @@
     }
     .v-enter-from,
     .v-leave-to {
-        opacity: 0;
+        opacity: 0;  /* 0就是完全透明的意思。 */
     }
 </style>
 
