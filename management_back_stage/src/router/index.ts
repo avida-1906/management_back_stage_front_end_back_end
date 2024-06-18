@@ -73,6 +73,36 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=>import('@/components/flex_layout/index.vue'),
     },
+    {//研究父组件给子组件传值
+        path: '/parent_transfer_to_child',
+        name: 'parent_transfer_to_child',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/parent_transfer_to_child/index.vue'),
+    },
+    {//研究子组件给父组件传值
+        path: '/child_transfer_to_parent',
+        name: 'child_transfer_to_parent',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/child_transfer_to_parent/index.vue'),
+    },
+    {//研究v-model双向绑定原理
+        path: '/v-model_two_way_binding',
+        name: 'v-model_two_way_binding',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/v-model_two_way_binding/index.vue'),
+    },
+    {//研究keep-alive内置组件
+        path: '/keep_alive_study',
+        name: 'keep_alive_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/keep_alive_study/index.vue'),
+    },
+    {//研究transition内置组件
+        path: '/transition_study',
+        name: 'transition_study',
+        meta: { requiresAuth: true },
+        component: ()=>import('@/components/transition_study/index.vue'),
+    },
 ]
 
 const router = createRouter({
