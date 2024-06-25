@@ -109,6 +109,7 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
     const isOk = ref(false)
     const is_login = ref<boolean>()
     const _token = ref<string>()
+    const is_check =ref<boolean>(false)
 
     //这些是computed（getters）
     const change_count = computed(()=>{
@@ -129,6 +130,14 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
     // const change_name = computed( ()=>{
     //     username.value = '张三'
     // } )
+    const change_is_check = computed( ()=> {
+        if ( is_check.value ) {
+            is_check.value = false;
+        } else {
+            is_check.value = true;
+        }
+        return is_check.value
+    } ) 
 
     //这些是function（actions）
     function add_one() {
@@ -170,6 +179,7 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
         change_count_plus_one, 
         get_count, 
         change_login_status,
+        change_is_check,
         add_one,
         store_login,
         change_name,

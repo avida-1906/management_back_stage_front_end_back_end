@@ -2,6 +2,7 @@ import { createApp, defineAsyncComponent } from 'vue'
 import Message from './message.vue'
 import Form_box from './form_box.vue'
 import Loading_box from './loading_box.vue'
+import Everyday_box from './everyday_box.vue'
 import router from '@/router'  //引入向外暴露的router对象
 
  /* 
@@ -10,6 +11,7 @@ import router from '@/router'  //引入向外暴露的router对象
 let vm_1:any
 let vm_2:any
 let vm_3:any
+let vm_4:any
 
 
 /* 
@@ -38,11 +40,21 @@ export function form_box( title:string, submit_text:string ) {
 
 /* 
     调用弹窗---loading弹窗
+    调用的时候要传弹窗标题、图片路径2个参数
+*/
+export function loading_box( title:string, img_src?:string ) {
+    vm_3 = createApp( Loading_box, { title, img_src } )
+    vm_3.mount( '#loading_box' )
+}
+
+/* 
+    调用弹窗---每天定时多次弹窗
     调用的时候要传弹窗标题、弹窗内容、确认按钮文本、取消按钮文本这4个参数
 */
-export function loading_box( title:string, html_content?:string ) {
-    vm_3 = createApp( Loading_box, { title, html_content } )
-    vm_3.mount( '#loading_box' )
+export function everyday_box( title:string, content?:string, confirm_text?:string, cancel_text?:string ) {
+    console.log(confirm_text,cancel_text)
+    vm_4 = createApp( Everyday_box, { title, content, confirm_text, cancel_text } )
+    vm_4.mount( '#everyday_box' )
     
 }
 
@@ -78,4 +90,15 @@ export function close_box_loading_box() {
         vm_3.unmount()
     }
     return { cancle_loading_box, confirm_loading_box }
+}
+
+//关闭---关闭everyday_box弹窗---用vue3里边卸载组件的方式
+export function close_box_everyday_box() {
+    function cancle_everyday_box() {
+        vm_4.unmount()
+    }
+    function confirm_everyday_box() {
+        vm_4.unmount()
+    }
+    return { cancle_everyday_box, confirm_everyday_box }
 }

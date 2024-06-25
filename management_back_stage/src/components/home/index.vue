@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-view></router-view>
         <my_headerheader></my_headerheader>
         <p>这是首页</p>
         <button @click="get_menus()">获取菜单</button>

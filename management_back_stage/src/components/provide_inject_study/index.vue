@@ -16,7 +16,7 @@
     import { ref, provide, readonly } from 'vue'
     import second_child from './second_child.vue'
 
-    const data = ref(0)  //定义一个要注入到其它组件的响应式变量，注意一定要用ref
+    const data =  ref()  //定义一个要注入到其它组件的响应式变量，注意一定要用ref
     //这里传的data变量你不能用.value给它解包，否则会丢失响应式。
     //如果你希望实现单向数据流，注入方不允许修改数据，那就用readonly()这个方法把数据包裹起来。
     provide('parent_data',data)

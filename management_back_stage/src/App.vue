@@ -8,6 +8,9 @@
 
     <!-- 这个是挂载确认/取消弹窗的容器 -->
     <div ref="message" id="message"></div>
+
+    <!-- 这个是挂载每日弹窗的容器 -->
+    <div ref="everyday_box" id="everyday_box"></div>
 </template>
 
 <script setup lang="ts">
@@ -59,6 +62,12 @@
     top: 50%;
     left: 50%;
     background: red;
+  }
+  #everyday_box {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 </style>

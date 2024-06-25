@@ -32,7 +32,7 @@ export const useProductStore = defineStore('product_id', ()=>{
             arr.value = data
             console.log(arr.value)
         } catch (e) {
-            console.log(e, 'store-products-acthions-store_get_product_list--catch:401token过期---异步函数记得要加try catch')
+            console.log(e, 'store-products-actions-store_get_product_list--catch:401token过期---异步函数记得要加try catch')
         }
     }
     return { arr, store_get_product_list }

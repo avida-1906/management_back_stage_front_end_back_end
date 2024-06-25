@@ -1,6 +1,15 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const routes: Array<any> = [ //这里填充该项目的所有路由
+    {//这个是重定向路由
+        path: '/',
+        name: 'retry',
+        // redirect: { name: 'home' }  //使用命名路由重定向
+        redirect: ( to:any )=> {  //使用方法的形式返回重定向的目标路由
+            return { path: '/home' }
+            // return 'home'
+        }
+    },
     {//这是个登陆组件的路由
         path: '/login',
         name: 'login',
@@ -8,10 +17,24 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         component: ()=>import('@/components/login/index.vue'),  //这是按需加载
     },
     {//这是个首页组件的路由
-        path: '/',
+        path: '/home',
         name: 'home',
         meta: { requiresAuth: true },
         component: ()=>import('@/components/home/index.vue'),
+        children: [
+            {//这是首页下面的子路由1
+                path: '/child_1',
+                name: 'child_1',
+                meta: { requiresAuth: true },
+                component: ()=>import('@/components/children_router/child_1.vue'),  //这是按需加载
+            },
+            {//这是首页下面的子路由2
+                path: '/child_2',
+                name: 'child_2',
+                meta: { requiresAuth: true },
+                component: ()=>import('@/components/children_router/child_2.vue'),  //这是按需加载
+            },
+        ]
     },
     {//研究computed的页面
         path: '/computed_study',
@@ -126,6 +149,72 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         name: 'async_components',
         meta: { requiresAuth: true },
         component: ()=> import('@/components/async_components/index.vue'),
+    },
+    {//vue3懒加载组件库学习
+        path: '/lazy_load',
+        name: 'lazy_load',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/lazy_load_study/index.vue'),
+    },
+    {//vue3默认插槽学习
+        path: '/default_slots',
+        name: 'default_slots',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/default_slots/index.vue'),
+    },
+    {//vue3具名插槽学习
+        path: '/named_slots',
+        name: 'named_slots',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/named_slots/index.vue'),
+    },
+    {//vue3条件插槽学习
+        path: '/conditional_slots',
+        name: 'conditional_slots',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/conditional_slots/index.vue'),
+    },
+    {//vue3动态插槽名学习
+        path: '/dynamic_slot_names',
+        name: 'dynamic_slot_names',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/dynamic_slot_names/index.vue'),
+    },
+    {//vue3作用域插槽学习
+        path: '/scoped_slots',
+        name: 'scoped_slots',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/scoped_slots/index.vue'),
+    },
+    {//vue3具名作用域插槽学习
+        path: '/named_scoped_slots',
+        name: 'named_scoped_slots',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/named_scoped_slots/index.vue'),
+    },
+    {//数组相关的一些API学习
+        path: '/array_api_study',
+        name: 'array_api_study',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/array_api_study/index.vue'),
+    },
+    {//instanceof学习
+        path: '/instanceof_study',
+        name: 'instanceof_study',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/instanceof_study/index.vue'),
+    },
+    {//forEach和map两个数组方法学习
+        path: '/forEach_map_study',
+        name: 'forEach_map_study',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/forEach_map_study/index.vue'),
+    },
+    {//grid布局学习
+        path: '/grid_study',
+        name: 'grid_study',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/grid_study/index.vue'),
     },
 ]
 
