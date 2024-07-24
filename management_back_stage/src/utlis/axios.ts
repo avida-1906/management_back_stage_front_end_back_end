@@ -38,7 +38,7 @@ interface userInfo{  //对象类型的数据就不要给它标注类型为object
     token: string
 }
 
-//请求拦截器
+//请求拦截器---拦截前端的请求
 const requestInterceptor = request.interceptors.request.use(
     //在发送请求之前调用
     (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {  //这个InternalAxiosRequestConfig是我百度出来的，以后遇到这种类型报错第一时间去百度
@@ -63,7 +63,7 @@ const requestInterceptor = request.interceptors.request.use(
     }
 )
 
-// 响应拦截器
+// 响应拦截器---拦截后端的响应
 const responseInterceptor = request.interceptors.response.use(
     (response: AxiosResponse): AxiosResponse => {
         // 2xx 范围内的状态码都会触发该函数。对响数据成功时调用。

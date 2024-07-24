@@ -15,6 +15,7 @@
     
 <script setup lang='ts'>
     import { form_box } from '@/components/function_box/'
+import { onMounted } from 'vue';
     
     //打开表单弹窗
     const show_form = ()=>{
@@ -23,7 +24,9 @@
             '提交'
         )
     }
-
+    onMounted( ()=> {
+        // window.location.reload()
+    } )
 </script>
     
 <style scoped lang='css'>

@@ -101,7 +101,15 @@ import { ref, computed } from 'vue'
     这是组合式（Setup Store）写法，
 */
 export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传一个箭头函数
-    //这些是ref（state）
+    
+    /* 
+        这些是ref（state）=============================================
+    */
+    interface userInfo{
+        code: number
+        message: string
+        token: string
+    }
     const username = ref('王五')
     const userpassword = ref('456')
     const count = ref(1)
@@ -110,8 +118,14 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
     const is_login = ref<boolean>()
     const _token = ref<string>()
     const is_check =ref<boolean>(false)
+    // const userInfo = ref<userInfo>()  //同下
+    // const isLogin = ref<boolean>(false)  //在store里边设置这个变量没有意义，页面一刷新全部变量都会重置。
 
-    //这些是computed（getters）
+
+
+    /* 
+        这些是computed（getters）=============================================
+    */
     const change_count = computed(()=>{
         return count.value * 2;
     })
@@ -138,8 +152,15 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
         }
         return is_check.value
     } ) 
+    const saveLocalStorageObj = computed( ()=>{
+        return localStorage.getItem('obj')
+    } )
 
-    //这些是function（actions）
+
+
+    /* 
+        这些是function（actions）=============================================
+    */
     function add_one() {
         count.value++;
     }
@@ -153,6 +174,9 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
         //登陆成功了要把用户名密码存到loaclStorage里边
         //localStorage里边的value只能存JSON字符串
         localStorage.setItem( 'userInfo', JSON.stringify(data) )
+        // userInfo.value = data
+        // if ( userInfo.value ) isLogin.value = true;
+        // console.log(isLogin.value)
         // console.log(localStorage.getItem('userInfo'))
         _token.value = token;  //两个变量名不能一样
         return res
@@ -167,6 +191,10 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
         count.value = 1;
     }
 
+
+    /* 
+        最后把所有定义的ref,computed,function导出
+    */
     return {
         //不管是state/getters变量还是actions里边的函数都要在这里return出来
         count,
@@ -180,6 +208,9 @@ export const useUserStore = defineStore( 'user_id', ()=>{  //第二个参数传�
         get_count, 
         change_login_status,
         change_is_check,
+        saveLocalStorageObj,
+        // userInfo,
+        // isLogin,
         add_one,
         store_login,
         change_name,

@@ -1,3 +1,9 @@
+<!-- 
+    学习新的：
+		App.vue这个组件不是所有组件的父组件或祖先级组件。它只是一个根组件，其它组件想要传参给它就要用store。
+-->
+
+
 <template>
     <router-view></router-view>
     <!-- 这个是挂载表单弹窗的容器 -->
@@ -10,29 +16,43 @@
     <div ref="message" id="message"></div>
 
     <!-- 这个是挂载每日弹窗的容器 -->
-    <div ref="everyday_box" id="everyday_box"></div>
+    <div ref="everyday_box_parent" id="everyday_box_parent"></div>
+    
 </template>
 
 <script setup lang="ts">
-    import { onMounted, onUnmounted, onUpdated, reactive, ref } from 'vue'
+    import { onMounted, onUnmounted, onUpdated, reactive, ref, watch } from 'vue'
     import { watch_element } from '@/utlis/resize_observer'
+    import { everyday_box } from '@/components/function_box/index.ts'  //注意，解构出来的变量不能和当前已有的变量同名。
+    import { storeToRefs } from 'pinia'
+	import { useTanchuangStore } from '@/stores/tanchuang';
+    import {  useUserStore } from '@/stores/users';
 
-    /* 获取目标元素，元素上用ref绑定这个变量就可以了（vue3不会用this.$refs.xxx这种写法了），
+	let xxxx = localStorage.getItem( 'obj' )
+	console.log(xxxx)
+	const store1 = useTanchuangStore()
+	// const store2 = useUserStore()
+    const { xxx } =  storeToRefs(store1)
+    // const { isLogin } =  storeToRefs(store2)
+    console.log(xxx.value)
+    // console.log(isLogin.value)
+	
+	/* 获取目标元素，元素上用ref绑定这个变量就可以了（vue3不会用this.$refs.xxx这种写法了），
       ref()不用给默认值，获取到的是一个响应式对象，可以通过.value来访问这个元素。 */
     const form_box = ref<any>(null);
     const message = ref<any>(null);
-
+    let a = ref(true)
     onMounted(()=>{
       //调用该方法是为了让两个容器都微调居中
       watch_element(form_box.value)
       watch_element(message.value)
-
     })    
         
     onUnmounted(()=>{
           
     })
-    
+
+	
 
     
 </script>

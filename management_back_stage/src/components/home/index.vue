@@ -53,14 +53,14 @@
         items = arr
     }
 
-    onMounted(
-        ()=>{
-            // axios.get('http://localhost:3000/menus').then(( res )=>{
-            //     console.log(res)
-            // })
-            // get_menus()
-        }
-    )
+    // onMounted(
+    //     // ()=>{
+    //     //     axios.get('http://localhost:3000/menus').then(( res )=>{
+    //     //         console.log(res)
+    //     //     })
+    //     //     get_menus()
+    //     // }
+    // )
     
     const show_box = ()=>{
         message( '弹窗标题', ` Lorem ipsum dolor sit amet consectetur adipisicing elit.

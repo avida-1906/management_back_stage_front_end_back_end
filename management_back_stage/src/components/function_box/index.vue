@@ -54,14 +54,14 @@
         [Vue warn]: There is already an app instance mounted on the host container.
         If you want to mount another app on the same host container, you need to unmount the previous app by calling `app.unmount()` first.
     */
-    let timer = setInterval( ()=> {
-        show_everyday_box()
-    } , 6000)
+    // let timer = setInterval( ()=> {
+    //     show_everyday_box()
+    // } , 6000)
 
-    console.log(change_is_check.value)
-    if ( change_is_check.value ) {
-        clearInterval(timer)
-    }
+    // console.log(change_is_check.value)
+    // if ( change_is_check.value ) {
+    //     clearInterval(timer)
+    // }
 
 </script>
     

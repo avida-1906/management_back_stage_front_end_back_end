@@ -98,18 +98,7 @@
                                 //**调用其它接口时 设置axios(ajax)请求头Authorization的格式为`Bearer +token` 
                             })
                         })
-                        // const x = JSON.stringify(result[0])
-                        // const obj = JSON.parse(x)
-                        // for ( key in obj ) {
-                        //     console.log( !(key === 'message') )
-                        //     if ( key === 'userpassword' ) {
-                        //         delete obj[key]
-                        //     } else if ( !(key === 'message') ) {
-                        //         obj['message'] = '登录成功！！！'
-                        //     }
-                        // }
-                        // res.json( obj )
-                    } 
+                    }
                 },1000)
             }
         })

@@ -216,6 +216,12 @@ const routes: Array<any> = [ //这里填充该项目的所有路由
         meta: { requiresAuth: true },
         component: ()=> import('@/components/grid_study/index.vue'),
     },
+    {//防抖和节流的学习
+        path: '/debounce_and_throttle',
+        name: 'debounce_and_throttle',
+        meta: { requiresAuth: true },
+        component: ()=> import('@/components/debounce_and_throttle/index.vue'),
+    },
 ]
 
 const router = createRouter({

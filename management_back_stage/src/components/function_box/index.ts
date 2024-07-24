@@ -1,4 +1,4 @@
-import { createApp, defineAsyncComponent } from 'vue'
+import { createApp, defineAsyncComponent, getCurrentInstance } from 'vue'
 import Message from './message.vue'
 import Form_box from './form_box.vue'
 import Loading_box from './loading_box.vue'
@@ -51,11 +51,11 @@ export function loading_box( title:string, img_src?:string ) {
     调用弹窗---每天定时多次弹窗
     调用的时候要传弹窗标题、弹窗内容、确认按钮文本、取消按钮文本这4个参数
 */
+
 export function everyday_box( title:string, content?:string, confirm_text?:string, cancel_text?:string ) {
-    console.log(confirm_text,cancel_text)
+    // console.log(confirm_text,cancel_text)
     vm_4 = createApp( Everyday_box, { title, content, confirm_text, cancel_text } )
-    vm_4.mount( '#everyday_box' )
-    
+    vm_4.mount( '#everyday_box_parent' )
 }
 
 
